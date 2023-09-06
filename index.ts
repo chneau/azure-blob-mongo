@@ -42,7 +42,7 @@ const restore = async () => {
   const url = await blockBlobClient.generateSasUrl({ permissions: BlobSASPermissions.from({ read: true }), expiresOn: new Date(Date.now() + 3000) });
   const response = await fetch(url);
   await Bun.write(dbArchive, response);
-  await execute(`mongorestore --gzip --archive=${dbArchive} ${mongodbUrl}`);
+  await execute(`mongorestore --gzip --drop --archive=${dbArchive} ${mongodbUrl}`);
   await unlink(dbArchive);
 };
 
