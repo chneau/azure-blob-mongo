@@ -1,0 +1,19 @@
+{
+  "name": "azure-blob-mongo",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun index.ts",
+    "watch": "bun --watch index.ts",
+    "build": "bun build --target=bun --outfile=index.js index.ts",
+    "docker-build": "docker build --tag=ghcr.io/chneau/azure-blob-mongo .",
+    "docker-push": "docker push ghcr.io/chneau/azure-blob-mongo",
+    "docker-run": "docker run --rm -it --net=host --name test --hostname test --env AZURE_STORAGE_CONNECTION_STRING --env AZURE_STORAGE_CONTAINER_NAME --env MONGODB_URL ghcr.io/chneau/azure-blob-mongo"
+  },
+  "devDependencies": {
+    "bun-types": "^0.8.1"
+  },
+  "dependencies": {
+    "@azure/storage-blob": "^12.15.0"
+  }
+}
